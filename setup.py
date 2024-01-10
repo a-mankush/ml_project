@@ -8,7 +8,7 @@ def get_requirements(file_path: str) -> list[str]:
     This function returns lists of requirements.
 
     """
-    requirements = []
+    requirements: list[str] = []
     with open(file_path) as f:
         requirements = f.readlines()
         requirements = [req.replace("\n", "") for req in requirements]
