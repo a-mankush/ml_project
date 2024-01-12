@@ -43,14 +43,14 @@ class ModelTrainer:
                 "RandomForest": RandomForestRegressor(),
                 "DecisionTree": DecisionTreeRegressor(),
                 "Gradient Boosting": GradientBoostingRegressor(),
-                "Liner Regression": LinearRegression,
+                "Liner Regression": LinearRegression(),
                 "K-nearest neighbors": KNeighborsRegressor(),
                 "XGBRegressor": XGBRegressor(),
                 "catboosting Regressor": CatBoostRegressor(verbose=False),
                 "AdaBoost Regressor": AdaBoostRegressor(),
             }
 
-            model_report: dict = evaluate_model(
+            model_report = evaluate_model(
                 X_train=X_train,
                 y_train=y_train,
                 X_test=X_test,
@@ -63,6 +63,10 @@ class ModelTrainer:
                 list(model_report.values()).index(best_model_score)
             ]
             best_model = models[best_model_name]
+
+            # best_model.fit(X_train, y_train)
+            # logging.info("Model is trained ")
+            logging.info(model_report)
 
             if best_model_score < 0.6:
                 raise CustomException("No best model found")
